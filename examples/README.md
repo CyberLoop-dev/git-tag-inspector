@@ -1,0 +1,1 @@
+Run the inspector inside any local Git repository that has tags: `python main.py --repo /path/to/repo --json`.\n
