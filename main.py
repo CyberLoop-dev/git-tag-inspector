@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 
-SEMVER = re.compile(r"^v?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:[-+][0-9A-Za-z.-]+)?$")
+SEMVER = re.compile(r"^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:[-+][0-9A-Za-z.-]+)?$")
 
 def is_semver(name):
     return bool(SEMVER.fullmatch(name))
@@ -17,7 +17,7 @@ def parse_tag_rows(output, now=None, stale_days=365):
     now = int(now if now is not None else time.time())
     tags, targets = [], defaultdict(list)
     for line in output.splitlines():
-        parts = line.split("\\x00")
+        parts = line.split("\x00")
         if len(parts) < 6:
             continue
         name, object_type, created, subject, object_id, peeled = parts[:6]
